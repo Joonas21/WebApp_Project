@@ -1,0 +1,26 @@
+{
+  "name": "projectwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd front && npm install",
+    "dev:front": "cd front && npm start",
+    "preinstall": "cd back && npm install",
+    "dev:back": "cd back && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joonas21/WebApp_Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joonas21/WebApp_Project/issues"
+  },
+  "homepage": "https://github.com/Joonas21/WebApp_Project#readme",
+  "dependencies": {
+    "concurrently": "^6.4.0"
+  }
+}
