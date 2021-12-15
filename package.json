@@ -8,7 +8,8 @@
     "install": "cd front && npm install",
     "dev:front": "cd front && npm start",
     "preinstall": "cd back && npm install",
-    "dev:back": "cd back && npm run dev"
+    "dev:back": "cd back && npm run dev",
+    "dev": "concurrently \"npm run dev:back\" \"npm run dev:front\""
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/Joonas21/WebApp_Project#readme",
   "dependencies": {
-    "concurrently": "^6.4.0"
+    "concurrently": "^6.4.0",
+    "react-router-dom": "^6.1.1"
   }
 }
