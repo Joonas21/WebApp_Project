@@ -1,13 +1,13 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
-function Login({setJwt, jwt, setUser}) {
+function Register () {
+
     const [userData, setUserData] = useState({})
 
     const submit = (e) => {
         e.preventDefault()
-        console.log("Getting here")
 
-        fetch("/users/login", {
+        fetch("/users/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -15,15 +15,6 @@ function Login({setJwt, jwt, setUser}) {
             body: JSON.stringify(userData),
             mode: "cors"
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                if(data.token) {
-                    setJwt(data.token)
-                    setUser(JSON.parse(Buffer.from(data.token.split(".")[1], "base64").toString()))
-                }
-            })
-
     }
 
     const handleChange = (e) => {
@@ -32,7 +23,7 @@ function Login({setJwt, jwt, setUser}) {
 
     return (
         <div>
-            <h2>Login</h2>
+            <h2>Register</h2>
             <form onSubmit={submit} onChange={handleChange}>
                 <input type="text" name="username" />
                 <input type="password" name="password" />
@@ -40,6 +31,7 @@ function Login({setJwt, jwt, setUser}) {
             </form>
         </div>
     )
+
 }
 
-export default Login
+export default Register

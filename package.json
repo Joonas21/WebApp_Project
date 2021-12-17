@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Joonas21/WebApp_Project#readme",
   "dependencies": {
     "concurrently": "^6.4.0",
+    "cors": "^2.8.5",
     "react-router-dom": "^6.1.1"
   }
 }
