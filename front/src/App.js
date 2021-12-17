@@ -12,39 +12,36 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 function App() {
 
-  const [codes, setCodes] = useState([{
-    "id": 1,
-    "code": "Example code for test purposes."
-  }])
-
-  const [comments, setComments] = useState([{
+  const [codes, setCodes] = useState([])
+  
+  /*const [comments, setComments] = useState([{
     "id": 100,
     "comment": "Example comment for test purposes."
-  }])
+  }]) */
 
   const [jwt, setJwt] = useState("")
   const [user, setUser] = useState({})
 
   useEffect(() => {
-    fetch("api/data")
+    fetch("/users/snippets")
       .then(response => response.json())
       .then(json => setCodes(json))
 
   }, []) //Lecture 11 fullstack
 
-  const addCode = (code) => {
+  /*const addCode = (code) => {
     console.log(code);
     const id = Math.floor(Math.random() * 1000000 + 1000)
     const newCode = {id, ...code}
     setCodes([...codes, newCode]) 
-  }
+  }*/
 
-  const addComment = (comment) => {
+  /*const addComment = (comment) => {
     console.log(comment);
     const id = Math.floor(Math.random() * 1000000 + 1000)
     const newComment = {id, ...comment}
     setComments([...comments, newComment]) 
-  }
+  }*/
 
 
   return (
@@ -53,12 +50,13 @@ function App() {
         <h1>Hello World</h1>
         <h2>{jwt ? `Welcome ${user.username}!` : ""}</h2>
         <Routes>
-          <Route path="/" element={<> <Codes codes={codes} /> <AddCode onAdd={addCode} /></> } />
-          <Route path="/data/:id" element={<><PostCode codes={codes} comments={comments}/> <AddComment onAdd={addComment} /></> } />
+          <Route path="/" element={ <Codes codes={codes} /> } />
+          <Route path="/data/:id" element={<PostCode codes={codes} /> } />
         </Routes>
         {!user?.id?.length > 0 && // Or just !jwt like in h2 above
         <Login setJwt={setJwt} setUser={setUser} jwt={jwt}/>
         }
+        <AddCode />
         <Register />
       </div>
     </Router>

@@ -1,26 +1,34 @@
 import { useState } from "react"
 
-const AddCode = ({ onAdd }) => {
+const AddCode = () => {
     const [text, setText] = useState('')
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if(!text) return
         
-        onAdd({ code: text })
+        fetch("/users/snippets", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(text),
+            mode: "cors"
+        })
 
-        setText("")
+    }
+
+    const handleChange = (e) => {
+        setText({...text, [e.target.name]: e.target.value})
     }
 
     return(
         <div>
             <h1>Post new code snippet</h1>
 
-            <form onSubmit={onSubmit}>
-                <label>Code</label>
-                <textarea placeholder="Post code snippet" onChange={(e) => setText(e.target.value)} value={text}/>
-                <input type="submit" value="Post code" className="btn"></input>
-            </form>
+            <form onSubmit={onSubmit} onChange={handleChange}>
+                <input type="text" name="code" />
+                <input type="submit" />
+            </form> 
         </div>
     )
 }

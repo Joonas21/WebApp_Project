@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 const Code = ({code}) => {
     return (
         <div>
-            <p><Link to={`/data/${code.id}`}>{code.id} {code.code}</Link></p>
+            <p><Link to={`/data/${code._id}`}> {code.code}</Link></p>
         </div>
     )
 }

@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const {body, validationResult } = require("express-validator");
 const User = require("../models/User");
+const Snippets = require("../models/Snippets")
 const jwt = require("jsonwebtoken");
 const validateToken = require("../auth/validateToken.js")
 const multer = require("multer")
@@ -95,5 +96,31 @@ router.post('/register',
       }
     });
 });
+
+router.get('/snippets', (req, res, next) => {
+  Snippets.find({}, (err, snippet) => {
+
+    if (err) return next(err);
+    if(snippet) {
+      return res.json(snippet);
+    } else {
+      return res.status(404).send("Not found");
+    }
+  })
+
+});
+
+router.post('/snippets',
+  
+  (req, res, next) => {
+
+  Snippets.create(
+    {
+      code: req.body.code,
+      //comments: req.body.comment
+    }
+  )
+
+  })
 
 module.exports = router;
