@@ -1,4 +1,4 @@
-WebApp Project work
+WebApp project work
 
 To get the project running you should first type "npm install" in the root folder. This install all the needed packages to front- and backend.
 
