@@ -19,7 +19,7 @@ function App() {
       .then(response => response.json())
       .then(json => setCodes(json))
 
-  }, [codes]) // Reaload the page everytime the codes changes
+  }, [codes]) // Reload the page everytime the codes changes
 
   return (
     <Router>
