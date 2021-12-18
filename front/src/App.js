@@ -47,16 +47,15 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Hello World</h1>
+        <h1>Koodi TUUBI</h1>
         <h2>{jwt ? `Welcome ${user.username}!` : ""}</h2>
         <Routes>
-          <Route path="/" element={ <Codes codes={codes} /> } />
-          <Route path="/data/:id" element={<PostCode codes={codes} /> } />
+          <Route path="/" element={<> <Codes codes={codes} /> <AddCode /> </> } />
+          <Route path="/users/:id" element={<> <PostCode codes={codes} /> <AddComment /> </> } />
         </Routes>
         {!user?.id?.length > 0 && // Or just !jwt like in h2 above
         <Login setJwt={setJwt} setUser={setUser} jwt={jwt}/>
         }
-        <AddCode />
         <Register />
       </div>
     </Router>

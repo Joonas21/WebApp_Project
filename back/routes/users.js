@@ -117,10 +117,32 @@ router.post('/snippets',
   Snippets.create(
     {
       code: req.body.code,
-      //comments: req.body.comment
+      comments: req.body.comment
     }
   )
 
   })
+
+// https://stackoverflow.com/questions/32129722/pushing-into-an-array-inside-of-a-mongoose-object
+router.post('/:id', upload.none(), (req, res, next) => {
+
+  Snippets.findOneAndUpdate(
+    {"_id": req.params.id},
+    {$push: {"comments": {comment: req.body.comment}}},
+    function(err, model){
+      if(err){
+        console.log("ERROR: ", err);
+        res.send(500, err);
+      } else {
+        res.status(200).send(model);
+      }
+    }
+  );
+  console.log("peräkarva")
+  console.log(req.params.id)
+  //console.log(req.body.comment)
+  //console.log(req.body._id)
+  console.log(req.body.comment)
+});
 
 module.exports = router;
