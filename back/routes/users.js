@@ -126,6 +126,7 @@ router.post('/snippets',
 // https://stackoverflow.com/questions/32129722/pushing-into-an-array-inside-of-a-mongoose-object
 router.post('/:id', upload.none(), (req, res, next) => {
 
+  // Here i search the snippet matching the id and add the comments to it
   Snippets.findOneAndUpdate(
     {"_id": req.params.id},
     {$push: {"comments": {comment: req.body.comment}}},
@@ -138,11 +139,7 @@ router.post('/:id', upload.none(), (req, res, next) => {
       }
     }
   );
-  console.log("peräkarva")
-  console.log(req.params.id)
-  //console.log(req.body.comment)
-  //console.log(req.body._id)
-  console.log(req.body.comment)
+
 });
 
 module.exports = router;

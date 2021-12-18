@@ -8,5 +8,3 @@ const Code = ({code}) => {
     )
 }
 export default Code
-
-//<p><Link to={'/data/${code.id}'}>{code.id} {code.code}</Link></p>

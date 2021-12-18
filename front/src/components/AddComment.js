@@ -4,12 +4,11 @@ import { useParams } from 'react-router-dom'
 const AddComment = () => {
     const [text, setText] = useState('')
     const { id } = useParams()
-    //const code = codes.find(codes => (codes._id) == id )
 
     const onSubmit = (e) => {
         e.preventDefault()
 
-        fetch("/users/" + id, {
+        fetch("/users/" + id, { //Adding the id dynamicly so we can access it on the backend
             method:"POST",
             headers: {
                 "Content-Type": "application/json"
