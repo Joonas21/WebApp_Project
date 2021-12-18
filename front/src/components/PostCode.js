@@ -10,7 +10,7 @@ const PostCode = ({codes}) => {
      <div>
          {code && 
             <>
-            <h2> {code.code} </h2>
+            <h2> Original code post "{code.code}" </h2>
             <Comment comment={code.comments} />
             </>
          }
